@@ -220,8 +220,8 @@ def calcAccuracy(y_predict,y_test):
   accuracy=correct/len(ypredict)*100
   return accuracy
 
-K=13
-L=2
+K=7
+L=1
 #==============================[first 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
@@ -229,28 +229,28 @@ for i in range(len(x_test)):
   ypredict.append(EncodedLabel)
 acc1 = calcAccuracy(ypredict,y_test1)
 
-#==============================[first 5-fold sets]===================================
+#==============================[second 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
   EncodedLabel = NearestNieghbour2(x_train2,y_train2,x_test2[i],K,L)
   ypredict.append(EncodedLabel)
 acc2 = calcAccuracy(ypredict,y_test2)
 
-#==============================[first 5-fold sets]===================================
+#==============================[third 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
   EncodedLabel = NearestNieghbour2(x_train3,y_train3,x_test3[i],K,L)
   ypredict.append(EncodedLabel)
 acc3 = calcAccuracy(ypredict,y_test3)
 
-#==============================[first 5-fold sets]===================================
+#==============================[fourth 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
   EncodedLabel = NearestNieghbour2(x_train4,y_train4,x_test4[i],K,L)
   ypredict.append(EncodedLabel)
 acc4 = calcAccuracy(ypredict,y_test4)
 
-#==============================[first 5-fold sets]===================================
+#==============================[fifth 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
   EncodedLabel = NearestNieghbour2(x_train5,y_train5,x_test5[i],K,L)
