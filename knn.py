@@ -132,41 +132,7 @@ x_test5=x2[90:120,:]
 #ytest
 y_test5=y2[90:120]
 
-#concatenate the training set
-#xtrain
-xt1=x[0:40,:]
-xt2=x[50:90,:]
-xt3=x[100:140,:]
-x_train=np.concatenate((xt1,xt2,xt3))
-#ytrain
-yt1=y[0:40]
-yt2=y[50:90]
-yt3=y[100:140]
-y_train=np.concatenate((yt1,yt2,yt3))
-
-#concatenate the test set
-#xtest
-xr1=x[40:50,:]
-xr2=x[90:100,:]
-xr3=x[140:150,:]
-x_test=np.concatenate((xr1,xr2,xr3))
-#ytest
-yr1=y[40:50]
-yr2=y[90:100]
-yr3=y[140:150]
-y_test=np.concatenate((yr1,yr2,yr3))
-
-def NearestNieghbour(xtrain,ytrain,xtest,distanceType):
-  minDist=math.inf
-  ind=-1
-  for i in range(len(xtrain)):
-    currentDist = calcDist(xtrain[i],xtest,distanceType)
-    if currentDist < minDist:
-      minDist = currentDist
-      ind = i
-  return ytrain[ind]
-
-def NearestNieghbour2(xtrain,ytrain,xtest,k,distanceType):
+def NearestNieghbour(xtrain,ytrain,xtest,k,distanceType):
   distances={}
 
   for i in range(len(xtrain)):
@@ -225,43 +191,37 @@ L=1
 #==============================[first 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
-  EncodedLabel = NearestNieghbour2(x_train1,y_train1,x_test1[i],K,L)
+  EncodedLabel = NearestNieghbour(x_train1,y_train1,x_test1[i],K,L)
   ypredict.append(EncodedLabel)
 acc1 = calcAccuracy(ypredict,y_test1)
 
 #==============================[second 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
-  EncodedLabel = NearestNieghbour2(x_train2,y_train2,x_test2[i],K,L)
+  EncodedLabel = NearestNieghbour(x_train2,y_train2,x_test2[i],K,L)
   ypredict.append(EncodedLabel)
 acc2 = calcAccuracy(ypredict,y_test2)
 
 #==============================[third 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
-  EncodedLabel = NearestNieghbour2(x_train3,y_train3,x_test3[i],K,L)
+  EncodedLabel = NearestNieghbour(x_train3,y_train3,x_test3[i],K,L)
   ypredict.append(EncodedLabel)
 acc3 = calcAccuracy(ypredict,y_test3)
 
 #==============================[fourth 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
-  EncodedLabel = NearestNieghbour2(x_train4,y_train4,x_test4[i],K,L)
+  EncodedLabel = NearestNieghbour(x_train4,y_train4,x_test4[i],K,L)
   ypredict.append(EncodedLabel)
 acc4 = calcAccuracy(ypredict,y_test4)
 
 #==============================[fifth 5-fold sets]===================================
 ypredict=[]
 for i in range(len(x_test)):
-  EncodedLabel = NearestNieghbour2(x_train5,y_train5,x_test5[i],K,L)
+  EncodedLabel = NearestNieghbour(x_train5,y_train5,x_test5[i],K,L)
   ypredict.append(EncodedLabel)
 acc5 = calcAccuracy(ypredict,y_test5)
 
 acc = (acc1+acc2+acc3+acc4+acc5)/5
 print(acc)
-
-"""# **Creating the confusion matrix**
-
-# **Generliaing for K more 1 or more**
-"""
-
